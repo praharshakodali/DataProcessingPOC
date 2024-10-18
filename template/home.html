@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>Home page for file upload feature</title> 
+    </head>
+    <body>
+        <h1>Upload file for data import</h1>
+        {%if message %}
+        <p style="color: red;">{{ message }}</p>
+        {% endif %}
+        <form action="/process_data" method="POST"enctype="multipart/form-data">
+            <input type="file" name="file"id="fileInput"><br><br><br>
+            <button type="submit" disabled id="submitButton">submit</button>
+        </form>
+        
+        <script>
+            const fileInput = document.getElementById('fileInput');
+            const submitButton = document.getElementById('submitButton');
+            fileInput.addEventListener('change', function() {
+                if (fileInput.files.length > 0) {
+                    submitButton.disabled = false;
+                } else {
+                    submitButton.disabled = true;
+                }
+            });
+        </script>
+    </body>
+</html>
